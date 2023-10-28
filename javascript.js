@@ -1,6 +1,9 @@
 //created array with every day of the week
 const daysOfWeek = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
 
+//amount of employees made
+let clones = 1;
+
 //create empty that get filled by the for loop
 const elements = {};
 
@@ -34,7 +37,7 @@ function CalculateTotalTime(startTimeElement, endTimeElement, totalTimeElement) 
     let totalMinutes = endTotal - startTotal;
 
     //checks if the number is negative and returns
-    if(totalMinutes < 0){
+    if(totalMinutes < 0 && startTime === "00:00"){
         endTimeElement.value = "00:00";
         startTimeElement.value = "00:00";
         totalTime.value = "00:00"
@@ -83,7 +86,52 @@ function AddEmployee(){
     const tFoot = table.lastChild;
 
     const clonedTBody = firstTBody.cloneNode(true);
+    // Loop through the elements and update their ids
+    const allElements = clonedTBody.getElementsByTagName("*");
+    for (let i = 0; i < allElements.length; i++) {
+        const element = allElements[i];
+        if (element.id) {
+            // If the element has an id, update it with a sequential number
+            element.id += "Clone_" + clones;
+        }
+    }
     table.insertBefore(clonedTBody, tFoot);
+    GetAddClone(clones);
+}
+
+function GetAddClone(clone){
+    //create empty that get filled by the for loop
+    const clonedElements = {};
+
+    for (const day of daysOfWeek) {
+        clonedElements[day] = {
+        startTime: document.getElementById(`${day}-startTimeClone_${clones}`),
+        endTime: document.getElementById(`${day}-endTime${clones}`),
+        totalTime: document.getElementById(`${day}-totalTime${clones}`)
+        };
+    }
+
+    for (const day of daysOfWeek) {
+        const clonedStartTime = document.getElementById(`${day}-startTimeClone_${clones}`);
+        const clonedEndTime = document.getElementById(`${day}-endTimeClone_${clones}`);
+        const clonedTotalTime = document.getElementById(`${day}-totalTimeClone_${clones}`);
+
+        clonedStartTime.addEventListener("input", function () {
+            CalculateTotalTime(clonedStartTime, clonedEndTime, clonedTotalTime);
+            CalculateTotalTimeForWeek();
+        });
+
+        clonedEndTime.addEventListener("input", function () {
+            CalculateTotalTime(clonedStartTime, clonedEndTime, clonedTotalTime);
+            CalculateTotalTimeForWeek();
+        });
+
+        clonedTotalTime.addEventListener("input", function () {
+            CalculateTotalTime(clonedStartTime, clonedEndTime, clonedTotalTime);
+            CalculateTotalTimeForWeek();
+        });
+    }
+    clones++;
 }
 
 //for loop that goes through all the days and when event happends use the event with the day
