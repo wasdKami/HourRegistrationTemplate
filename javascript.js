@@ -35,7 +35,10 @@ function CalculateTotalTime(startTimeElement, endTimeElement, totalTimeElement) 
 
     //checks if the number is negative and returns
     if(totalMinutes < 0){
-        return console.log("Cannot put in negative numbers: "+ totalMinutes);    
+        endTimeElement.value = "00:00";
+        startTimeElement.value = "00:00";
+        totalTime.value = "00:00"
+        return alert("Cannot start later then ended!");
     }
 
     //convert the seconds too HH:mm format
