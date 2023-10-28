@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hour Registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="settings-container">
+        <div class="settings-header">
+            <h3>Settings</h3>
+            <form action="set">
+                <input type="checkbox" name="weekend-work" id="">
+                <label for="weekend-work">Work in the weekend</label>
+            </form>
+        </div>
+    </div>
+
+    <table class="template-container">
+        <tr>        
+            <th>Name</th>
+            <th>Day</th>
+            <th>Start Time</th>
+            <th>Break</th>
+            <th>End Time</th>
+            <th>Total</th>
+            <th rowspan="8"><button class="create-column">Create Column +</button></th>
+        </tr>
+        <tr>        
+            <th rowspan="7" class="name-container"><input name="name-container" type="text"></th>
+            <td class="monday">Monday</td>
+            <td><input type="time" id="startTime" value="09:00"></td>
+            <td><input type="number" id="break"></td>
+            <td><input type="time" id="endTime" value="17:00"></td>
+            <td><input type="time" id="totalTime"></td>
+        </tr>
+        <tr>        
+            <td class="tuesday">Tuesday</td>
+            <td>09:00</td>
+            <td>03:00</td>
+            <td>17:00</td>
+            <th>07:30</th>
+        </tr>
+        <tr>        
+            <td class="wednesday">Wednesday</td>
+            <td>09:00</td>
+            <td>03:00</td>
+            <td>17:00</td>
+            <th>07:30</th>
+        </tr>
+        <tr>        
+            <td class="thursday">Thursday</td>
+            <td>09:00</td>
+            <td>03:00</td>
+            <td>17:00</td>
+            <th>07:30</th>
+        </tr>
+        <tr>        
+            <td class="friday">Friday</td>
+            <td>09:00</td>
+            <td>03:00</td>
+            <td>17:00</td>
+            <th>07:30</th>
+        </tr>
+        <tr>        
+            <td class="saturday">Saturday</td>
+            <td>09:00</td>
+            <td>03:00</td>
+            <td>17:00</td>
+            <th>07:30</th>
+        </tr>
+        <tr>        
+            <td class="sunday">Sunday</td>
+            <td>09:00</td>
+            <td>03:00</td>
+            <td>17:00</td>
+            <th>07:30</th>
+        </tr>
+        <tr>        
+            <th colspan="8"><input class="create-row" type="button" id="btnAdd" value="Create Employee +"></th>
+        </tr>
+    </table>
+    <script src="javascript.js"></script>
+</body>
+</html>
