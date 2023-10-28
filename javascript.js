@@ -1,30 +1,18 @@
-let mondayStartTime = document.getElementById("monday-startTime");
-let mondayEndTime = document.getElementById("monday-endTime");
-let mondayTotalTime = document.getElementById("monday-totalTime");
+//created array with every day of the week
+const daysOfWeek = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
 
-let tuesdayStartTime = document.getElementById("tuesday-startTime");
-let tuesdayEndTime = document.getElementById("tuesday-endTime");
-let tuesdayTotalTime = document.getElementById("tuesday-totalTime");
+//create empty that get filled by the for loop
+const elements = {};
 
-let wednesdayStartTime = document.getElementById("wednesday-startTime");
-let wednesdayEndTime = document.getElementById("wednesday-endTime");
-let wednesdayTotalTime = document.getElementById("wednesday-totalTime");
+for (const day of daysOfWeek) {
+    elements[day] = {
+        startTime: document.getElementById(`${day}-startTime`),
+        endTime: document.getElementById(`${day}-endTime`),
+        totalTime: document.getElementById(`${day}-totalTime`)
+    };
+}
 
-let thursdayStartTime = document.getElementById("thursday-startTime");
-let thursdayEndTime = document.getElementById("thursday-endTime");
-let thursdayTotalTime = document.getElementById("thursday-totalTime");
-
-let fridayStartTime = document.getElementById("friday-startTime");
-let fridayEndTime = document.getElementById("friday-endTime");
-let fridayTotalTime = document.getElementById("friday-totalTime");
-
-let saturdayStartTime = document.getElementById("saturday-startTime");
-let saturdayEndTime = document.getElementById("saturday-endTime");
-let saturdayTotalTime = document.getElementById("saturday-totalTime");
-
-let sundayStartTime = document.getElementById("sunday-startTime");
-let sundayEndTime = document.getElementById("sunday-endTime");
-let sundayTotalTime = document.getElementById("sunday-totalTime");
+let weekHours = document.getElementById(`weekHours`);
 
 function CalculateTotalTime(startTimeElement, endTimeElement, totalTimeElement) {
     //create variables from the parameters 
@@ -77,72 +65,33 @@ function HHMMToMinutes(HHMM){
     return Total;
 }
 
-mondayStartTime.addEventListener("input", function(){
-    CalculateTotalTime(mondayStartTime, mondayEndTime, mondayTotalTime);
-});
-mondayEndTime.addEventListener("input", function(){
-    CalculateTotalTime(mondayStartTime, mondayEndTime, mondayTotalTime);
-});
-mondayTotalTime.addEventListener("input", function(){
-    CalculateTotalTime(mondayStartTime, mondayEndTime, mondayTotalTime);
-});
+function CalculateTotalTimeForWeek() {
+    let totalTimeForWeek = 0;
+    for (const day of daysOfWeek) {
+        const totalTime = elements[day].totalTime.value;
+        totalTimeForWeek += HHMMToMinutes(totalTime);
+    }
+    weekHours.textContent = minutesToHHMM(totalTimeForWeek);
+}
 
-tuesdayStartTime.addEventListener("input", function(){
-    CalculateTotalTime(tuesdayStartTime, tuesdayEndTime, tuesdayTotalTime);
-});
-tuesdayEndTime.addEventListener("input", function(){
-    CalculateTotalTime(tuesdayStartTime, tuesdayEndTime, tuesdayTotalTime);
-});
-tuesdayTotalTime.addEventListener("input", function(){
-    CalculateTotalTime(tuesdayStartTime, tuesdayEndTime, tuesdayTotalTime);
-});
+//for loop that goes through all the days and when event happends use the event with the day
+for (const day of daysOfWeek) {
+    const startTime = document.getElementById(`${day}-startTime`);
+    const endTime = document.getElementById(`${day}-endTime`);
+    const totalTime = document.getElementById(`${day}-totalTime`);
 
-wednesdayStartTime.addEventListener("input", function(){
-    CalculateTotalTime(wednesdayStartTime, wednesdayEndTime, wednesdayTotalTime);
-});
-wednesdayEndTime.addEventListener("input", function(){
-    CalculateTotalTime(wednesdayStartTime, wednesdayEndTime, wednesdayTotalTime);
-});
-wednesdayTotalTime.addEventListener("input", function(){
-    CalculateTotalTime(wednesdayStartTime, wednesdayEndTime, wednesdayTotalTime);
-});
+    startTime.addEventListener("input", function () {
+        CalculateTotalTime(startTime, endTime, totalTime);
+        CalculateTotalTimeForWeek();
+    });
 
-thursdayStartTime.addEventListener("input", function(){
-    CalculateTotalTime(thursdayStartTime, thursdayEndTime, thursdayTotalTime);
-});
-thursdayEndTime.addEventListener("input", function(){
-    CalculateTotalTime(thursdayStartTime, thursdayEndTime, thursdayTotalTime);
-});
-thursdayTotalTime.addEventListener("input", function(){
-    CalculateTotalTime(thursdayStartTime, thursdayEndTime, thursdayTotalTime);
-});
+    endTime.addEventListener("input", function () {
+        CalculateTotalTime(startTime, endTime, totalTime);
+        CalculateTotalTimeForWeek();
+    });
 
-fridayStartTime.addEventListener("input", function(){
-    CalculateTotalTime(fridayStartTime, fridayEndTime, fridayTotalTime);
-});
-fridayEndTime.addEventListener("input", function(){
-    CalculateTotalTime(fridayStartTime, fridayEndTime, fridayTotalTime);
-});
-fridayTotalTime.addEventListener("input", function(){
-    CalculateTotalTime(fridayStartTime, fridayEndTime, fridayTotalTime);
-});
-
-saturdayStartTime.addEventListener("input", function(){
-    CalculateTotalTime(saturdayStartTime, saturdayEndTime, saturdayTotalTime);
-});
-saturdayEndTime.addEventListener("input", function(){
-    CalculateTotalTime(saturdayStartTime, saturdayEndTime, saturdayTotalTime);
-});
-saturdayTotalTime.addEventListener("input", function(){
-    CalculateTotalTime(saturdayStartTime, saturdayEndTime, saturdayTotalTime);
-});
-
-sundayStartTime.addEventListener("input", function(){
-    CalculateTotalTime(sundayStartTime, sundayEndTime, sundayTotalTime);
-});
-sundayEndTime.addEventListener("input", function(){
-    CalculateTotalTime(sundayStartTime, sundayEndTime, sundayTotalTime);
-});
-sundayTotalTime.addEventListener("input", function(){
-    CalculateTotalTime(sundayStartTime, sundayEndTime, sundayTotalTime);
-});
+    totalTime.addEventListener("input", function () {
+        CalculateTotalTime(startTime, endTime, totalTime);
+        CalculateTotalTimeForWeek();
+    });
+}
