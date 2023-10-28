@@ -74,6 +74,15 @@ function CalculateTotalTimeForWeek() {
     weekHours.textContent = minutesToHHMM(totalTimeForWeek);
 }
 
+function AddEmployee(){
+    const table = document.getElementById("tableContainer");
+    const firstTBody = table.querySelector('tbody');
+    const tFoot = table.lastChild;
+
+    const clonedTBody = firstTBody.cloneNode(true);
+    table.insertBefore(clonedTBody, tFoot);
+}
+
 //for loop that goes through all the days and when event happends use the event with the day
 for (const day of daysOfWeek) {
     const startTime = document.getElementById(`${day}-startTime`);
