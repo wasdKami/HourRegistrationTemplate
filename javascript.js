@@ -4,6 +4,9 @@ const daysOfWeek = ["monday", "tuesday", "wednesday", "thursday", "friday", "sat
 //amount of employees made
 let clones = 1;
 
+// Get all time input elements
+const timeInputs = document.querySelectorAll('input[type="time"]');
+
 //create empty that get filled by the for loop
 const elements = {};
 
