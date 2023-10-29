@@ -7,7 +7,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <table>
+    <div class="settingsContainer">
+        <div id="weekendContainer">
+            <label for="weekendCheckbox"></label>
+            <input type="checkbox" name="weekendCheckbox" id="weekendCheckbox">
+        </div>
+    </div>
+
+    <table id="tableContainer">
         <thead>
             <tr>
                 <th>Name</th>
@@ -19,16 +26,19 @@
             </tr>
         </thead>
         <tbody>
-            <th colspan="7">Gilbert</th>
+            <th rowspan="7">Gilbert</th>
             <td id="mondayDate">Monday</td>
             <td>
                 <select id="timeHours"></select>
                 <select id="timeMinutes"></select>
             </td>
         </tbody>
+        <tfoot>
+            <tr>
+                <td><input type="button" value="Create Employee + " id="createEmployee"></td>
+            </tr>
+        </tfoot>
     </table>
-
-    
-    <script src="createSelect.js"></script>
+    <script type="module" src="/JS/main.js"></script>
 </body>
 </html>

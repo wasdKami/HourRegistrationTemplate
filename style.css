@@ -7,6 +7,8 @@
 
 body{
     background-color: #3F3F3F;
+    display: flex;
+    gap: 1em;
 }
 
 select {
