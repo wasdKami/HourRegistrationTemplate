@@ -80,12 +80,13 @@ function CalculateTotalTimeForWeek() {
     weekHours.textContent = minutesToHHMM(totalTimeForWeek);
 }
 
-function AddEmployee(){
-    const table = document.getElementById("tableContainer");
-    const firstTBody = table.querySelector('tbody');
-    const tFoot = table.lastChild;
+const table = document.getElementById("tableContainer");
+const firstTBody = table.querySelector('tbody');
+const tFoot = table.lastChild;
 
-    const clonedTBody = firstTBody.cloneNode(true);
+const clonedTBody = firstTBody.cloneNode(true);
+
+function AddEmployee(){
     // Loop through the elements and update their ids
     const allElements = clonedTBody.getElementsByTagName("*");
     for (let i = 0; i < allElements.length; i++) {
