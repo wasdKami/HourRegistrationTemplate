@@ -9,6 +9,10 @@ body{
     background-color: #3F3F3F;
 }
 
+select {
+    background-color: #3F3F3F;
+}
+
 th, td, tr, table{
     border: 1px black solid;
     border-spacing: 0;

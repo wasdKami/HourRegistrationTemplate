@@ -10,6 +10,8 @@ const timeInputs = document.querySelectorAll('input[type="time"]');
 //create empty that get filled by the for loop
 const elements = {};
 
+
+
 for (const day of daysOfWeek) {
     elements[day] = {
         startTime: document.getElementById(`${day}-startTime`),
